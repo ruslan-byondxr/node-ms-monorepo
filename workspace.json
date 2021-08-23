@@ -1,7 +1,192 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "svc-cart": {
+      "root": "apps/svc-cart",
+      "sourceRoot": "apps/svc-cart/src",
+      "projectType": "application",
+      "targets": {
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx build svc-cart",
+              "docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart"
+            ],
+            "parallel": false
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/svc-cart",
+            "main": "apps/svc-cart/src/main.ts",
+            "tsConfig": "apps/svc-cart/tsconfig.app.json",
+            "assets": ["apps/svc-cart/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/svc-cart/src/environments/environment.ts",
+                  "with": "apps/svc-cart/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "svc-cart:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/svc-cart/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/svc-cart"],
+          "options": {
+            "jestConfig": "apps/svc-cart/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "svc-products": {
+      "root": "apps/svc-products",
+      "sourceRoot": "apps/svc-products/src",
+      "projectType": "application",
+      "targets": {
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx build svc-products",
+              "docker build -f ./apps/svc-products/Dockerfile . -t svc-products"
+            ],
+            "parallel": false
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/svc-products",
+            "main": "apps/svc-products/src/main.ts",
+            "tsConfig": "apps/svc-products/tsconfig.app.json",
+            "assets": ["apps/svc-products/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/svc-products/src/environments/environment.ts",
+                  "with": "apps/svc-products/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "svc-products:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/svc-products/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/svc-products"],
+          "options": {
+            "jestConfig": "apps/svc-products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "svc-user": {
+      "root": "apps/svc-user",
+      "sourceRoot": "apps/svc-user/src",
+      "projectType": "application",
+      "targets": {
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx build svc-user",
+              "docker build -f ./apps/svc-user/Dockerfile . -t svc-user"
+            ],
+            "parallel": false
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/svc-user",
+            "main": "apps/svc-user/src/main.ts",
+            "tsConfig": "apps/svc-user/tsconfig.app.json",
+            "assets": ["apps/svc-user/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/svc-user/src/environments/environment.ts",
+                  "with": "apps/svc-user/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "svc-user:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/svc-user/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/svc-user"],
+          "options": {
+            "jestConfig": "apps/svc-user/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "svc-cart"
 }
