@@ -12,8 +12,8 @@
             "commands": [
               "nx build svc-cart",
               "docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart",
-              "kubectl apply -f apps/svc-cart/svc-cart-deployment.yaml",
-              "kubectl apply -f apps/svc-cart/svc-cart-service.yaml"
+              "kubectl apply -f apps/svc-cart/deployment.yaml",
+              "kubectl apply -f apps/svc-cart/service.yaml"
             ],
             "parallel": false
           }

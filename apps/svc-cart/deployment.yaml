@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: svc-cart-deployment
+  name: svc-cart
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: svc-cart-app
+      app: svc-cart
   template:
     metadata:
       labels:
-        app: svc-cart-app
+        app: svc-cart
     spec:
       containers:
-        - name: svc-cart-container
+        - name: svc-cart
           image: svc-cart:latest
           imagePullPolicy: Never
           ports:
