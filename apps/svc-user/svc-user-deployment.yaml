@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc-user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-user-app
+  template:
+    metadata:
+      labels:
+        app: svc-user-app
+    spec:
+      containers:
+        - name: svc-user-container
+          image: svc-user:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080

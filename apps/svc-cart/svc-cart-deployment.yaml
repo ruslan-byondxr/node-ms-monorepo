@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc-cart-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-cart-app
+  template:
+    metadata:
+      labels:
+        app: svc-cart-app
+    spec:
+      containers:
+        - name: svc-cart-container
+          image: svc-cart:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080

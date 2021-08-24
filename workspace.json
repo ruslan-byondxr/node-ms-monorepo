@@ -11,7 +11,9 @@
           "options": {
             "commands": [
               "nx build svc-cart",
-              "docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart"
+              "docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart",
+              "kubectl apply -f apps/svc-cart/svc-cart-deployment.yaml",
+              "kubectl apply -f apps/svc-cart/svc-cart-service.yaml"
             ],
             "parallel": false
           }
@@ -72,7 +74,9 @@
           "options": {
             "commands": [
               "nx build svc-products",
-              "docker build -f ./apps/svc-products/Dockerfile . -t svc-products"
+              "docker build -f ./apps/svc-products/Dockerfile . -t svc-products",
+              "kubectl apply -f apps/svc-products/svc-products-deployment.yaml",
+              "kubectl apply -f apps/svc-products/svc-products-service.yaml"
             ],
             "parallel": false
           }
@@ -133,7 +137,9 @@
           "options": {
             "commands": [
               "nx build svc-user",
-              "docker build -f ./apps/svc-user/Dockerfile . -t svc-user"
+              "docker build -f ./apps/svc-user/Dockerfile . -t svc-user",
+              "kubectl apply -f apps/svc-user/svc-user-deployment.yaml",
+              "kubectl apply -f apps/svc-user/svc-user-service.yaml"
             ],
             "parallel": false
           }
