@@ -15,6 +15,6 @@ spec:
       containers:
         - name: svc-cart
           image: svc-cart:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 3333

@@ -7,6 +7,7 @@ spec:
   selector:
     app: svc-products
   ports:
-    - protocol: TCP
+    - name: svc-products-service
+      protocol: TCP
       port: 80
       targetPort: 3333

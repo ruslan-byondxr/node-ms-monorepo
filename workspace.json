@@ -11,7 +11,18 @@
           "options": {
             "commands": [
               "nx build svc-cart",
-              "docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart"
+              "docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart",
+              "docker save svc-cart | (eval $(minikube docker-env) && docker load)"
+            ],
+            "parallel": false
+          }
+        },
+        "kubernetesDeploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "kubectl apply -f apps/svc-cart/deployment.yaml",
+              "kubectl apply -f apps/svc-cart/service.yaml"
             ],
             "parallel": false
           }
@@ -72,7 +83,18 @@
           "options": {
             "commands": [
               "nx build svc-products",
-              "docker build -f ./apps/svc-products/Dockerfile . -t svc-products"
+              "docker build -f ./apps/svc-products/Dockerfile . -t svc-products",
+              "docker save svc-products | (eval $(minikube docker-env) && docker load)"
+            ],
+            "parallel": false
+          }
+        },
+        "kubernetesDeploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "kubectl apply -f apps/svc-products/deployment.yaml",
+              "kubectl apply -f apps/svc-products/service.yaml"
             ],
             "parallel": false
           }
@@ -133,7 +155,18 @@
           "options": {
             "commands": [
               "nx build svc-user",
-              "docker build -f ./apps/svc-user/Dockerfile . -t svc-user"
+              "docker build -f ./apps/svc-user/Dockerfile . -t svc-user",
+              "docker save svc-user | (eval $(minikube docker-env) && docker load)"
+            ],
+            "parallel": false
+          }
+        },
+        "kubernetesDeploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "kubectl apply -f apps/svc-user/deployment.yaml",
+              "kubectl apply -f apps/svc-user/service.yaml"
             ],
             "parallel": false
           }

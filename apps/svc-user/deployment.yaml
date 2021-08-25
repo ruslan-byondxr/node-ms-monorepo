@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: svc-user-deployment
+  name: svc-user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: svc-user-app
+      app: svc-user
   template:
     metadata:
       labels:
-        app: svc-user-app
+        app: svc-user
     spec:
       containers:
-        - name: svc-user-container
+        - name: svc-user
           image: svc-user:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 3333
