@@ -3,12 +3,12 @@ services:
   svc-cart:
     image: svc-cart
     ports:
-      - '8083:3336'
+      - '8083:3333'
   svc-products:
     image: svc-products
     ports:
-      - '8084:3334'
+      - '8084:3333'
   svc-user:
     image: svc-user
     ports:
-      - '8085:3335'
+      - '8085:3333'

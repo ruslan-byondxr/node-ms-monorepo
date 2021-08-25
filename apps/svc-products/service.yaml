@@ -5,8 +5,8 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: svc-products-app
+    app: svc-products
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 3333

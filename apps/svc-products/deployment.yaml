@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: svc-products-deployment
+  name: svc-products
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: svc-products-app
+      app: svc-products
   template:
     metadata:
       labels:
-        app: svc-products-app
+        app: svc-products
     spec:
       containers:
-        - name: svc-products-container
+        - name: svc-products
           image: svc-products:latest
           imagePullPolicy: Never
           ports:

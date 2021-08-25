@@ -75,8 +75,8 @@
             "commands": [
               "nx build svc-products",
               "docker build -f ./apps/svc-products/Dockerfile . -t svc-products",
-              "kubectl apply -f apps/svc-products/svc-products-deployment.yaml",
-              "kubectl apply -f apps/svc-products/svc-products-service.yaml"
+              "kubectl apply -f apps/svc-products/deployment.yaml",
+              "kubectl apply -f apps/svc-products/service.yaml"
             ],
             "parallel": false
           }
@@ -138,8 +138,8 @@
             "commands": [
               "nx build svc-user",
               "docker build -f ./apps/svc-user/Dockerfile . -t svc-user",
-              "kubectl apply -f apps/svc-user/svc-user-deployment.yaml",
-              "kubectl apply -f apps/svc-user/svc-user-service.yaml"
+              "kubectl apply -f apps/svc-user/deployment.yaml",
+              "kubectl apply -f apps/svc-user/service.yaml"
             ],
             "parallel": false
           }

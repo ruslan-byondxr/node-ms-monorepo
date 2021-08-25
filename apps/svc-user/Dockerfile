@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 WORKDIR /app
 COPY ./dist/apps/svc-user .
-ENV PORT=3335
+ENV PORT=3333
 EXPOSE ${PORT}
 RUN npm install --production
 # dependencies that express needs
