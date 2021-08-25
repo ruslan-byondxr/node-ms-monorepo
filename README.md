@@ -11,7 +11,7 @@
 - minikube
 - virtualbox
 
-<br/><br/>
+<br/>
 
 #### Install on mac
 
@@ -22,7 +22,33 @@ brew cask install docker
 brew cask install minikube
 brew cask install virtualbox
 ```
-<br/><br/>
+<br/>
+
+
+#### Install on Linux (Debian)
+
+To install docker, follow the instructions here:
+https://docs.docker.com/engine/install/ubuntu/
+
+Install docker-compose
+```
+sudo apt install docker-compose
+```
+
+
+Docker Desktop works on Mac and Windows only. A proper alternative is dockstation app:
+https://dockstation.io/
+
+To install kubectl follow the instructions here:
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+To install minikube follow the instructions here:
+https://minikube.sigs.k8s.io/docs/start/
+
+To install virtualbox follow the instructions here:
+https://www.virtualbox.org/wiki/Linux_Downloads
+
+<br/>
 
 #### Check if installed properly 
 
@@ -33,7 +59,7 @@ docker-compose --version
 docker-machine --version
 minikube version
 ```
-<br/><br/>
+<br/>
 
 ### Run docker desktop
 
@@ -46,7 +72,7 @@ Open docker desktop standalone app  <br/><br/><br/>
 ```shell
 minikube start
 ```
-<br/><br/>
+<br/>
 
 #### Check if minikube node is ready
 ```shell
