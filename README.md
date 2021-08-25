@@ -93,13 +93,10 @@ IMAGE ID       TAG       REPOSITORY
 You can run the following commands with your IDE's NX extension (vscode or intellij)
 
 ```shell
-nx run svc-cart:dockerBuild 
 nx run svc-cart:kubernetesDeploy 
 
-nx run svc-products:dockerBuild 
 nx run svc-products:kubernetesDeploy 
 
-nx run svc-user:dockerBuild 
 nx run svc-user:kubernetesDeploy 
 ```
 <br/>
