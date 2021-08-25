@@ -89,7 +89,7 @@ IMAGE ID       TAG       REPOSITORY
 ```
 <br/>
 
-### Run NX commands
+### Deploy to kubernetes - Run NX commands
 You can run the following commands with your IDE's NX extension (vscode or intellij)
 
 ```shell
