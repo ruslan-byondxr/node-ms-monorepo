@@ -5,7 +5,7 @@
   
 
 #### Install the following
-
+- NX
 - docker
 - kubectl
 - minikube
@@ -16,6 +16,7 @@
 #### Install on mac
 
 ```shell
+npm install -g nx
 brew update
 brew install kubectl
 brew cask install docker
