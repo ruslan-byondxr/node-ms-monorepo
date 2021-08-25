@@ -28,6 +28,9 @@ brew cask install virtualbox
 
 #### Install on Linux (Debian)
 
+install nx
+`npm install -g nx`
+
 To install docker, follow the instructions here:
 https://docs.docker.com/engine/install/ubuntu/
 
