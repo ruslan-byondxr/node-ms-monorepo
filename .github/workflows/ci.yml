@@ -1,30 +1,37 @@
 name: ci
-
 on:
   push:
-    branches:
-      - 'master'
-
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+        package_manager:
+          - yarn
     steps:
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1 
+      - uses: actions/checkout@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          push: true
-          tags: user/app:latest
+          node-version: ${{ matrix.node-version }}
+      - run: git fetch origin master
+      - run: yarn install
+      - name: build svc-cart
+        shell: bash
+        run: yarn nx run svc-cart:dockerBuild 
+      - name: build svc-products
+        shell: bash
+        run: yarn nx run svc-products:dockerBuild
+      - name: build svc-user
+        shell: bash
+        run: yarn nx run svc-user:dockerBuild             
+#       - name: Deploy to Netlify
+#         shell: bash
+#         if: github.ref == 'refs/heads/master'
+#         run: NETLIFY_TOKEN=tHInavUB4ywYxyyFWCxUd0N0OvBLJ5xCoSFjtxTZ310 yarn affected:deploy --base=master~1 --head=master
