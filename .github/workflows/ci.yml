@@ -35,19 +35,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: build docker
-        shell: bash
-        run: |
-              docker build -f ./apps/svc-cart/Dockerfile . -t ruslanbyondxr/svc-cart
-              docker build -f ./apps/svc-products/Dockerfile . -t ruslanbyondxr/svc-products
-              docker build -f ./apps/svc-user/Dockerfile . -t ruslanbyondxr/svc-user
-
       - name: Get commit short hash and branch name
         id: vars
         shell: bash
         run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: build docker
+        shell: bash
+        run: |
+              docker build -f ./apps/svc-cart/Dockerfile . -t ruslanbyondxr/svc-cart:${{ steps.vars.outputs.sha_short }}
+              docker build -f ./apps/svc-products/Dockerfile . -t ruslanbyondxr/svc-products:${{ steps.vars.outputs.sha_short }}
+              docker build -f ./apps/svc-user/Dockerfile . -t ruslanbyondxr/svc-user:${{ steps.vars.outputs.sha_short }}
 
       - name: push to docker hub
         shell: bash
