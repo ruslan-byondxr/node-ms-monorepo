@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc-products
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: svc-products
+  template:
+    metadata:
+      labels:
+        app: svc-products
+    spec:
+      containers:
+        # modify the following line with your Docker Hub account name
+        - image: index.docker.io/ruslanbyondxr/svc-products:latest
+          name: svc-products
+          ports:
+            - containerPort: 3333
