@@ -24,13 +24,10 @@ jobs:
       - run: yarn install
       - name: build svc-cart
         shell: bash
-        run: yarn nx run svc-cart:dockerBuild 
-      - name: build svc-products
-        shell: bash
-        run: yarn nx run svc-products:dockerBuild
-      - name: build svc-user
-        shell: bash
-        run: yarn nx run svc-user:dockerBuild             
+        run: nx build svc-cart
+      - name: build docker svc-cart
+        shell: bash      
+        run: docker build -f ./apps/svc-cart/Dockerfile . -t svc-cart
 #       - name: Deploy to Netlify
 #         shell: bash
 #         if: github.ref == 'refs/heads/master'
