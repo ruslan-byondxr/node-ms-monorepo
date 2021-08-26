@@ -42,9 +42,16 @@ jobs:
               docker build -f ./apps/svc-products/Dockerfile . -t ruslanbyondxr/svc-products
               docker build -f ./apps/svc-user/Dockerfile . -t ruslanbyondxr/svc-user
 
+      - name: Get commit short hash and branch name
+        id: vars
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "::set-output name=sha_short::commit-hash-$(git rev-parse --short HEAD)"
+
       - name: push to docker hub
         shell: bash
         run: |
-              docker push ruslanbyondxr/svc-cart
-              docker push ruslanbyondxr/svc-products
-              docker push ruslanbyondxr/svc-user
+              docker push ruslanbyondxr/svc-cart:${{ steps.vars.outputs.sha_short }}
+              docker push ruslanbyondxr/svc-products:${{ steps.vars.outputs.sha_short }}
+              docker push ruslanbyondxr/svc-user:${{ steps.vars.outputs.sha_short }}
