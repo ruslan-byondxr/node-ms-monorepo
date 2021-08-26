@@ -204,7 +204,6 @@ You should see:
 
 ### Monitor services with minikube dashboard
 
-run minikube dashboard
 ```shell
 minikube dashboard
 ```
