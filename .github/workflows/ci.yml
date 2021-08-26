@@ -38,7 +38,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./apps/svc-cart
-          file: ./apps/svc-cart/Dockerfile
+          context: apps/svc-cart
+          file: apps/svc-cart/Dockerfile
           push: true
           tags: ruslanbyondxr/svc-cart:latest
