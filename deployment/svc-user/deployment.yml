@@ -17,5 +17,6 @@ spec:
         # modify the following line with your Docker Hub account name
         - image: index.docker.io/ruslanbyondxr/svc-user:latest
           name: svc-user
+          imagePullPolicy: Always
           ports:
             - containerPort: 3333

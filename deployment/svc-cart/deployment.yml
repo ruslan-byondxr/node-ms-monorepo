@@ -17,5 +17,6 @@ spec:
         # modify the following line with your Docker Hub account name
         - image: index.docker.io/ruslanbyondxr/svc-cart:latest
           name: svc-cart
+          imagePullPolicy: Always
           ports:
             - containerPort: 3333

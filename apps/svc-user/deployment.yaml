@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: svc-user
-          image: svc-user:latest
-          imagePullPolicy: IfNotPresent
+          image: svc-user:latests
+          imagePullPolicy: Always
           ports:
             - containerPort: 3333

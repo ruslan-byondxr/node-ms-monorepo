@@ -15,6 +15,6 @@ spec:
       containers:
         - name: svc-products
           image: svc-products:latest
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           ports:
             - containerPort: 3333
