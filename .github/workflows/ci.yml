@@ -22,9 +22,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: git fetch origin master
       - run: yarn install
-      - name: build svc-cart
+      - name: build services
         shell: bash
-        run: yarn nx build svc-cart
+        run: |
+              yarn nx build svc-cart
+              yarn nx build svc-products
+              yarn nx build svc-user
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -34,8 +37,14 @@ jobs:
 
       - name: build docker
         shell: bash
-        run: docker build -f ./apps/svc-cart/Dockerfile . -t ruslanbyondxr/svc-cart
+        run: |
+              docker build -f ./apps/svc-cart/Dockerfile . -t ruslanbyondxr/svc-cart
+              docker build -f ./apps/svc-products/Dockerfile . -t ruslanbyondxr/svc-products
+              docker build -f ./apps/svc-user/Dockerfile . -t ruslanbyondxr/svc-user
 
       - name: push to docker hub
         shell: bash
-        run: docker push ruslanbyondxr/svc-cart
+        run: |
+              docker push ruslanbyondxr/svc-cart
+              docker push ruslanbyondxr/svc-products
+              docker push ruslanbyondxr/svc-user
