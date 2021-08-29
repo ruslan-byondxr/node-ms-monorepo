@@ -208,8 +208,10 @@ minikube dashboard
 ```
 <img width="1680" alt="Screen Shot 2021-08-25 at 19 59 01" src="https://user-images.githubusercontent.com/88276747/130833667-8e2ea4a4-2687-4e83-ae8d-d1c47fdd29d4.png">
 
+<br/>
+<br/>
 
-## Run services locally with ArgoCD
+# Run services locally with ArgoCD
 
 ### Install Argo CD with kubectl
 
