@@ -211,7 +211,7 @@ minikube dashboard
 <br/>
 <br/>
 
-# Run services locally with ArgoCD
+# Deploy services locally with ArgoCD
 
 ### Install Argo CD with kubectl
 
