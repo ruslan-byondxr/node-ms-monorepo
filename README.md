@@ -1,8 +1,7 @@
 
 
-# NodeMsMonorepo
- 
-  
+# Running NX monorepo microservices locally with Docker, Kubernetes and ArgoCD
+
 
 #### Install the following
 - NX
@@ -209,3 +208,105 @@ minikube dashboard
 ```
 <img width="1680" alt="Screen Shot 2021-08-25 at 19 59 01" src="https://user-images.githubusercontent.com/88276747/130833667-8e2ea4a4-2687-4e83-ae8d-d1c47fdd29d4.png">
 
+
+## Run services locally with ArgoCD
+
+### Install Argo CD with kubectl
+
+```shell
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+### Download Argo CD CLI
+
+Mac:
+```shell
+brew install argocd
+```
+
+Linux and Windows:  
+https://argoproj.github.io/argo-cd/cli_installation/
+
+
+### Expose ArgoCD API Server
+```shell
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+    
+### Config ArgoCD CLI with username admin and password admin
+```shell
+kubectl -n argocd patch secret argocd-secret \
+    -p '{"stringData": {"admin.password": "$2a$10$mivhwttXM0U5eBrZGtAG8.VSRL1l9cZNAmaSaqotIzXRBRwID1NT.",
+        "admin.passwordMtime": "'$(date +%FT%T)'"
+    }}'
+argocd login localhost:8080 --username admin --password admin --insecure
+```
+
+### Expose ArgoCD UI
+
+```shell
+kubectl port-forward svc/argocd-server -n argocd 8080:443 
+```
+
+### Finally, open ArgoCD UI in your browser
+
+https://localhost:8080/
+
+
+<img width="1680" alt="Screen Shot 2021-08-25 at 19 59 01" src="https://santanderglobaltech.com/wp-content/uploads/2021/06/argocd_login-768x444.png">
+
+
+### Login 
+user: ```admin``` 
+
+password: ```admin```
+
+
+<img width="1680" alt="Screen Shot 2021-08-25 at 19 59 01" src="https://santanderglobaltech.com/wp-content/uploads/2021/06/argocd_home-768x444.png">
+
+
+### Create new App
+
+Click on ```NEW APP``` button
+
+
+### Fill out the fields
+
+Application Name: ```cart-service```
+
+Project: ```default```
+
+Repository URL: https://github.com/ruslan-byondxr/node-ms-deployment
+
+We are going to use separate git repo for our deployment config files. It's best practice in the industry. 
+
+> The use of a different Git repository to hold your kubernetes manifests (separate from your application source code), is highly recommended. See best practices for further rationale.
+> https://argoproj.github.io/argo-cd/user-guide/best_practices/   
+
+
+
+Path: ```svc-cart```
+
+Cluster URL: ```https://kubernetes.default.svc``` 
+
+Namespace: ```microservices```
+
+
+#### Click on ```Create```
+#### Click on ```SYNC```
+
+
+### Access microservice locally
+
+```shell
+kubectl port-forward -n microservices svc/svc-cart 7000:8080
+```
+
+Open up your browser:
+http://localhost:7000/api
+
+Now you should see a json response:
+```shell
+{"message":"Welcome to svc-cart!"}
+```
