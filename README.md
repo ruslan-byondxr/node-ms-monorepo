@@ -211,7 +211,7 @@ minikube dashboard
 <br/>
 <br/>
 
-# Run services locally with ArgoCD
+# Deploy services locally with ArgoCD
 
 ### Install Argo CD with kubectl
 
@@ -296,7 +296,12 @@ Namespace: ```microservices```
 
 
 #### Click on ```Create```
-#### Click on ```SYNC```
+
+You should see The service:
+![Screen Shot 2021-08-29 at 12 17 21](https://user-images.githubusercontent.com/88276747/131245565-4878a32d-fc80-4659-9ac3-b66dac86f179.png)
+
+
+#### 🔥 Click on ```SYNC```
 
 
 ### Access microservice locally
