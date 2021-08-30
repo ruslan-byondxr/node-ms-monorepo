@@ -8,7 +8,7 @@ import * as express from 'express';
 const app = express();
 
 app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to svc-products! ARGOCD 999' });
+  res.send({ message: 'Welcome to svc-products! ARGOCD 777777' });
 });
 
 const port = process.env.port || 3333;
