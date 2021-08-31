@@ -83,4 +83,3 @@ jobs:
           git config --global user.name 'ruslan-byondxr'
           git diff --exit-code && echo 'Already deployed' || (git commit -am 'Upgrade argocd to ${{ steps.vars.outputs.sha_short }}' && git push)
         working-directory: argoproj-deployments/argocd
-
