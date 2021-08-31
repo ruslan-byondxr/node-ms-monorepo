@@ -28,10 +28,9 @@ jobs:
       - name: build services
         shell: bash
         run: |
-              yarn nx build svc-cart
-              yarn nx build svc-products
-              yarn nx build svc-user
-
+              yarn nx affected:build svc-cart
+              yarn nx affected:build svc-products
+              yarn nx affected:build svc-user
 
 
       - name: Get commit short hash and branch name
