@@ -94,11 +94,8 @@ jobs:
         env:
           TOKEN: ${{ secrets.GIT_AUTH_TOKEN  }}
       - run: |
-          docker run -v $(pwd):/src/svc-cart -w /src/svc-cart --rm -t lyft/kustomizer:v3.3.0 kustomize edit set image index.docker.io/ruslanbyondxr/svc-cart:${{ steps.vars.outputs.sha_short }}
-          docker run -v $(pwd):/src/svc-products -w /src/svc-products --rm -t lyft/kustomizer:v3.3.0 kustomize edit set image index.docker.io/ruslanbyondxr/svc-products:${{ steps.vars.outputs.sha_short }}
-          docker run -v $(pwd):/src/svc-user -w /src/svc-user --rm -t lyft/kustomizer:v3.3.0 kustomize edit set image index.docker.io/ruslanbyondxr/svc-user:${{ steps.vars.outputs.sha_short }}
-
+          docker run -v $(pwd):/src -w /src --rm -t lyft/kustomizer:v3.3.0 kustomize edit set image index.docker.io/ruslanbyondxr/svc-cart:${{ steps.vars.outputs.sha_short }}
           git config --global user.email 'ruslan@byondxr.com'
           git config --global user.name 'ruslan-byondxr'
           git diff --exit-code && echo 'Already deployed' || (git commit -am 'Update services to ${{ steps.vars.outputs.sha_short }}' && git push)
-        working-directory: node-ms-deployment
+        working-directory: node-ms-deployment/svc-cart
