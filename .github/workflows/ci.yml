@@ -68,6 +68,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./src/github.com/ruslan-byondxr/node-ms-monorepo
+          context: ../../apps/svc-cart
           push: true
           tags: ruslanbyondxr/svc-cart:${{ steps.vars.outputs.sha_short }}
