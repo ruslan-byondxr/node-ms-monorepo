@@ -20,6 +20,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
+      - uses: c-hive/gha-yarn-cache@v2
+
       - run: git fetch origin master
       - run: yarn install
       - name: build services
